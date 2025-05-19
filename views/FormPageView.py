@@ -2,6 +2,8 @@ import ttkbootstrap as ttk
 from ttkbootstrap.constants import *
 from PIL import Image, ImageTk
 
+IMAGE_SCALE_FACTOR = 0.1
+
 
 class FormPageView(ttk.Frame):
     def __init__(self, parent, controller):
@@ -29,9 +31,10 @@ class FormPageView(ttk.Frame):
         submit_button.pack(pady=30)
 
         # Logo
-        logo_img = Image.open("assets/dm-logo.png")
+        logo_img = Image.open("assets/dm-logo2.png")
         orig_width, orig_height = logo_img.size
-        logo_img = logo_img.resize(((orig_width * 2), (orig_height * 2)))
+        logo_img = logo_img.resize(
+            (round(orig_width * IMAGE_SCALE_FACTOR), round(orig_height * IMAGE_SCALE_FACTOR)))
         self.logo_photo = ImageTk.PhotoImage(logo_img)
         logo_label = ttk.Label(self, image=self.logo_photo)
         logo_label.pack(side="bottom", pady=(0, 20))
